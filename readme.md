@@ -9,6 +9,10 @@ Shear HEAting model for 1d shear zone implemented in Matlab (v2020a).
 * **shea_materials.m**    - database of viscous flow law and thermal parameters 
 * **shearzone_nf.m**      - shear zone model with no thermo-mechanical feedback
 
+Archived on Zenodo:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3994114.svg)](https://doi.org/10.5281/zenodo.3994114)
+
 # Background
 ## Governing Equations
 Our implementation is a coupled thermal and viscous mechanical model in 1D. 
