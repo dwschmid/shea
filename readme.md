@@ -1,5 +1,8 @@
 # shea
-Shear HEAting model in 1d shear zone
+Shear HEAting model for 1d shear zone implemented in Matlab (v2020a).
+
+**shea** was developed as a contribution to "Rapid fluid-driven transformation of lower continental crust associated with thrust-induced shear heating" by Jamtveit et al., which is currently under review. 
+
 * **shea_compute.m**      - main computational routine
 * **shea_constants.m**    - definition of various constants
 * **shea_driver.m**       - driver for shea_compute, facilitates parameter space analysis
@@ -52,3 +55,13 @@ The energy dissipation due to the shearing is then accounted for in the next tem
 
 ## Numerical Method
 We numerical method is a finite difference method. The mechnical part is solved implicitely while we use an explicite solver for the temperature. 
+
+## Examples
+Running **shea_compute** shows how the various parameters (temperature, viscosity, etc.) evolve for a specific configuration of the controlling parameters. The result visualization is also saved as an animated gif, which we show below:
+![Parameter evolution in shear zone](/doc/shea_example.gif?raw=true)
+
+Running **shea_driver.m** scans through a range of parameters and records the maximum stress and temperature values experienced in the center of the shear zone. An example is shown below:
+![Maximum temperature in shear zone for parameter ranges](/doc/parameter_study_temp.png?raw=true)
+
+## Acknowledgements
+This project was supported by the European Union's Horizon 2020 Research and Innovation Programme under the ERC Advanced Grant Agreement n°669972, ‘Disequilibrium Metamorphism’ (‘DIME’) to BJ.

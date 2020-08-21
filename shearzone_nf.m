@@ -4,7 +4,7 @@
 %   fixed width and the boundary condition is a constant shear velocity.
 %
 %   Can be used to study eff. viscosity and shear stress as a function of
-%   temperature, shear zone width, shear velocity, and rheology. 
+%   temperature, shear zone width, shear velocity, and rheology.
 %
 %   August, 2020, Dani Schmid
 

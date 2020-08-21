@@ -16,6 +16,9 @@ function t_record = shea_compute(config)
 %      temperature and the shear rate intensity. The internal deformation
 %      of the shear zone is solved so that shear stress is constant.
 %
+%   A self-explanatory example of the input config is given below for the
+%   case where no input is specified (nargin==0).
+%
 %   May, 2020, Dani Schmid
 
 % Constants
@@ -23,20 +26,20 @@ function t_record = shea_compute(config)
 
 % Nargin - setup standard config in case none provided
 if nargin==0
-    config.lithology    = 'anorthite_wet';	% lithology
-    config.disp_time    = 5*myr;            % duration
-    config.disp_vel     = 3/100/yr;         % displacement velocity
+    config.lithology    = 'anorthite_wet';      % lithology
+    config.disp_time    = 5*myr;                % duration
+    config.disp_vel     = 5/100/yr;             % displacement velocity
     
-    config.h_sz         = 1*km;             % shear zone width
-    config.h_top        = 55*km;         	% model extent above shear zone (1.5 GP)
-    config.h_bot        = config.h_top;     % model extent below shear zone
+    config.h_sz         = 1*km;                 % shear zone width
+    config.h_top        = 55*km;                % model extent above shear zone (1.5 GP)
+    config.h_bot        = config.h_top;         % model extent below shear zone
     
-    config.t_sz         = 600;              % initial temperature in the middle of the shear zone, used to calculate gradient
+    config.t_sz         = 600;                  % initial temperature in the middle of the shear zone, used to calculate gradient
     
-    config.np           = 2000;          	% numerical resolution - entire model, i.e. shear zone much lower resolution
-    config.mech_conv    = 1e-4;            	% mechanical convergence criterion
-    config.plot_freq    = myr/10;        	% plot frequency, 0 = no plot, inf = plot every tstep
-    config.plot_agif	= [];            	% if we specify a file name here then an animated gif is written
+    config.np           = 2000;                 % numerical resolution - entire model, i.e. shear zone much lower resolution
+    config.mech_conv    = 1e-4;                 % mechanical convergence criterion
+    config.plot_freq    = myr/10;               % plot frequency, 0 = no plot, inf = plot every tstep
+    config.plot_agif	= 'shea_example.gif'; 	% if we specify a file name here then an animated gif is written
 end
 
 % Material database
@@ -101,9 +104,10 @@ Time        = linspace(0, config.disp_time, ceil(config.disp_time/dt_stable)+1);
 dt          = Time(2)-Time(1);
 
 % Time evolution recorders
-t_record.Tau     = NaN(size(Time));             % shear stress recorder
-t_record.T       = NaN(size(Time));             % temperature increase recorder
-t_record.T(1)	= T_ori(Ind_sz(round(end/2))); % read out the middle of the shear zone
+t_record.Time	= Time;                            % time
+t_record.Tau	= NaN(size(Time));                 % shear stress
+t_record.T      = NaN(size(Time));                 % temperature
+t_record.T(1)	= T_ori(Ind_sz(round(end/2)));     % read out the middle of the shear zone
 
 for tstep=1:length(Time)-1
     % Mechanics - Shear Zone Only

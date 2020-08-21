@@ -1,4 +1,6 @@
-% SHEA_DRIVER driver for shea_compute
+% SHEA_DRIVER driver for shea_compute.
+%
+%   Useful for parameter space exploration.
 %
 %   August, 2020, Dani Schmid
 
@@ -9,20 +11,21 @@ clear variables;
 [yr, myr, km, R, C2K] = shea_constants();
 
 % Config - parameter space variables
-Lithology           = {'anorthite_wet'}; %, 'anorthite_dry'};
-Vel                 = [5,6]/100/yr;
+Lithology           = {'anorthite_wet', 'anorthite_dry'};
+Vel                 = [1:6]/100/yr;
 T_sz                = [600, 650];
 
-% Config - user specified model parameters
-%config.lithology    = 'anorthite_wet';	% lithology
-config.disp_time    = 5*myr;            % duration
-%config.disp_vel     = 3/100/yr;         % displacement velocity
+% Config parts that are overwritten by the above parameter space variables
+% config.disp_vel     = 3/100/yr;         % displacement velocity
+% config.lithology    = 'anorthite_wet';  % lithology
+% config.t_sz         = 600;              % initial temperature in the middle of the shear zone, used to calculate gradient
 
-config.h_sz         = .5*km;             % shear zone width
+% Config - user specified model parameters
+config.disp_time    = 5*myr;            % duration
+
+config.h_sz         = .5*km;            % shear zone width
 config.h_top        = 55*km;         	% model extent above shear zone (1.5 GP)
 config.h_bot        = config.h_top;     % model extent below shear zone
-
-%config.t_sz         = 600;              % initial temperature in the middle of the shear zone, used to calculate gradient
 
 config.np           = 2000;          	% numerical resolution - entire model, i.e. shear zone much lower resolution
 config.mech_conv    = 1e-4;            	% mechanical convergence criterion
