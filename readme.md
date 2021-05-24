@@ -1,7 +1,7 @@
 # shea
 Shear HEAting model for 1d shear zone implemented in Matlab (v2020a).
 
-**shea** was developed as a contribution to "Rapid fluid-driven transformation of lower continental crust associated with thrust-induced shear heating" by Jamtveit et al., which is currently under review. 
+**shea** was developed as a contribution to "Rapid fluid-driven transformation of lower continental crust associated with thrust-induced shear heating" by Jamtveit et al. (2021), published in Lithos [doi:10.1016/j.lithos.2021.106216](https://www.sciencedirect.com/science/article/pii/S0024493721002528?dgcid=coauthor). 
 
 * **shea_compute.m**      - main computational routine
 * **shea_constants.m**    - definition of various constants
